@@ -2,6 +2,10 @@
 
 This is a code snippet that shows the consumption of Algoracle Global  State price pair.
 
+## To View the Oracle being udpated, see the following app:
+
+    https://testnet.algoexplorer.io/application/53083112
+
 # Running the App
 
 To run the app, follow these steps:
