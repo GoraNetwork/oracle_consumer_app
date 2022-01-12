@@ -34,3 +34,5 @@ To run the applications multiple times, you can remove the following line on
 This last line immediately deletes the created application, so as not to use up the account's allow limit of 10 apps.
 
 For any questions with the above procedure, email us at communications@algoracle.ai and a developer will be in touch with you.
+
+
