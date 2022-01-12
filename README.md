@@ -7,6 +7,7 @@ This is a code snippet that shows the consumption of Algoracle Global  State pri
 To run the app, follow these steps:
 
 • Clone the repo
+
 • Create a .env file with the following:
 
     secret_key = <The secret key of an algorand account>
