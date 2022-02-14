@@ -8,12 +8,34 @@ from assets.consumer_clear import clear_state_program
 from dotenv import load_dotenv
 import os
 load_dotenv()
+"""
+# config for sandbox
+algod_server = "http://localhost"
+algod_port = "4001"
+algod_token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+algod_auth_header = "X-Algo-API-Token"
 
+headers = {
+    algod_auth_header: algod_token
+}
+
+algod_endpoint = algod_server
+
+if (algod_port != ""):
+    algod_endpoint = "{algod_server}:{algod_port}".format(algod_server=algod_server, algod_port=str(algod_port))
+
+algod_client = algod.AlgodClient(
+    algod_token,
+    algod_endpoint,
+    headers=headers
+)
+"""
 
 algod_address = "https://testnet.algoexplorerapi.io"
 algod_token = ""
-headers={'User-Agent': 'DoYouLoveMe?'}
-algod_client = algod.AlgodClient(algod_token, algod_address, headers)
+algod_client = algod.AlgodClient(algod_token, algod_address)
+
+ORACLE_INDEX_ID = 70820731
 ALGO_ORACLE_APP_ID = 53083112
 
 
@@ -30,7 +52,8 @@ def setup_create_app():
     local_schema = transaction.StateSchema(local_ints, local_bytes)
 
     with open("./approval.teal", "w") as f:
-        approval_program_teal = approval_program(ALGO_ORACLE_APP_ID)
+        # pass in index appId, oracle appId and desired price pair key
+        approval_program_teal = approval_program(ORACLE_INDEX_ID, ALGO_ORACLE_APP_ID, "algo/usd")
         f.write(approval_program_teal)
 
     with open("./clear.teal", "w") as f:
@@ -58,6 +81,8 @@ def setup_call_app(app_id):
       algod_client,
       app_id,
       os.environ.get('sender_secret_key'),
+      ORACLE_INDEX_ID,
+      ALGO_ORACLE_APP_ID
     )
 
 created_app_id = setup_create_app()
