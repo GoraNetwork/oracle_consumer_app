@@ -47,7 +47,9 @@ def create_app(
 def call_app(
     algod_client,
     app_id,
-    sender_private_key
+    sender_private_key,
+    index_app_id,
+    oracle_app_id
     ):
     #build transaction
     params = algod_client.suggested_params()
@@ -59,7 +61,7 @@ def call_app(
         sp = params,
         index = app_id,
         on_complete = transaction.OnComplete.NoOpOC,
-        foreign_apps=[53083112]
+        foreign_apps=[index_app_id, oracle_app_id]
     )
     update_price_call_signed_txn = update_price_call.sign(sender_private_key)
     update_price_call_signed_txn_id = update_price_call_signed_txn.get_txid()
@@ -94,5 +96,5 @@ def delete_app(client, private_key, index):
 
     # display results
     transaction_response = client.pending_transaction_info(tx_id)
-    print("Thank your for using the price oracle. Your app has now being deleted. Deleted app-id:", transaction_response["txn"]["txn"]["apid"])
+    print("Thank your for using the price oracle. Your app has now been deleted. Deleted app-id:", transaction_response["txn"]["txn"]["apid"])
 

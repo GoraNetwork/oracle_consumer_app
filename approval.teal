@@ -36,25 +36,34 @@ main_l10:
 int 0
 return
 main_l11:
-int 53083112
-byte "price"
+int 56
+byte "algo/usd"
 app_global_get_ex
-store 2
-store 3
-load 3
 store 0
-int 53083112
-byte "decimals"
+store 1
+load 1
+int 14
+==
+assert
+int 14
+byte "price"
 app_global_get_ex
 store 4
 store 5
 load 5
-store 1
+store 2
+int 14
+byte "decimals"
+app_global_get_ex
+store 6
+store 7
+load 7
+store 3
 byte "algo/usd"
-load 0
+load 2
 app_global_put
 byte "decimals"
-load 1
+load 3
 app_global_put
 int 1
 return
