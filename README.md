@@ -3,6 +3,16 @@
 This is a code snippet that shows the consumption of an Algoracle global state price pair oracle.
 This example reads from two smart contracts: the price feed index contract that stores the current oracle appId for each price pair, and the corresponding contract for the desired price pair oracle.
 
+These institutional data providers are currently feeding the price feeds:
+
+* Kaiko
+* Amberdata
+* dxFeed
+* Brave New Coin
+* Crypto Compare
+* Twelve Data
+
+
 ## To view the index contract and look up the appId for a price pair on testnet:
 
     https://testnet.algoexplorer.io/application/70820731
